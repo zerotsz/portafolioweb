@@ -5,37 +5,71 @@ export default function Certificates() {
   const certificates = [
     {
       id: 1,
+      title: "Database Design - Español",
+      issuer: "Cisco Networking Academy / Oracle Academy",
+      sede: "SENATI",
+      type: "CERTIFICADO OFICIAL",
+      date: "Formación Profesional",
+      description: "Diseño de bases de données relacionales, modelado entidad-relación y normalización.",
+      driveUrl: "https://drive.google.com/file/d/15yzQYbrIp0FZM7RNs3xQlQ2IgKvriEmh/view?usp=sharing"
+    },
+    {
+      id: 2,
+      title: "Database Programming with SQL - Español",
+      issuer: "Cisco Networking Academy / Oracle Academy",
+      sede: "SENATI",
+      type: "CERTIFICADO OFICIAL",
+      date: "Formación Profesional",
+      description: "Programación avanzada en bases de datos relacionales mediante consultas SQL y PL/SQL.",
+      driveUrl: "https://drive.google.com/file/d/16RBgBXO1I-dxVqkm9uCzMwX3lM__FSVn/view?usp=sharing"
+    },
+    {
+      id: 3,
+      title: "Java Foundations",
+      issuer: "Oracle Academy / Cisco Networking Academy",
+      sede: "SENATI",
+      type: "CERTIFICADO OFICIAL",
+      date: "Formación Profesional",
+      description: "Fundamentos esenciales de programación orientada a objetos utilizando el lenguaje Java.",
+      driveUrl: "https://drive.google.com/file/d/17-8Kq0o_KVGTyQd_IW9T-UcBUypzTQb6/view?usp=sharing"
+    },
+    {
+      id: 4,
+      title: "Java Fundamentals - Español",
+      issuer: "Cisco Networking Academy",
+      sede: "SENATI",
+      type: "CERTIFICADO OFICIAL",
+      date: "Formación Profesional",
+      description: "Introducción detallada a la lógica de programación y estructuras con Java.",
+      driveUrl: "https://drive.google.com/file/d/1UTxxqoE3YqHHl1rTdP2HahSRHPemVPZi/view?usp=sharing"
+    },
+    {
+      id: 5,
       title: "Conceptos Básicos de Hardware de Computadora",
       issuer: "Cisco Networking Academy",
       sede: "SENATI - San Martín de Porres-Lima",
-      instructor: "Guillermo Alberto Góngora Chu",
       type: "CURSO OFICIAL",
       date: "20 Sep, 2024",
-      certId: "aa66c7fe-9c59-454b-b017-a63f4ba29e32",
       description: "Conceptos básicos de hardware de computadora y componentes de PCs y dispositivos móviles.",
       driveUrl: "https://drive.google.com/drive/folders/1CVE_xyGv8cvQjPqZUeVdwvW8Yt4MTZQU?hl=es"
     },
     {
-      id: 2,
+      id: 6,
       title: "Introducción a Ciberseguridad",
       issuer: "Cisco Networking Academy",
       sede: "SENATI - San Martín de Porres-Lima",
-      instructor: "Guillermo Alberto Góngora Chu",
       type: "CURSO OFICIAL",
       date: "17 Ago, 2024",
-      certId: "b1c4d3e1-f7be-494c-aa3c-e82064624e99",
       description: "Fundamentos y principios esenciales de ciberseguridad para la protección de sistemas e información.",
       driveUrl: "https://drive.google.com/drive/folders/1T_mHCbczYpmZI3paE7X4RK4efka5Nqve?hl=es"
     },
     {
-      id: 3,
+      id: 7,
       title: "Introducción al Internet de las Cosas y Transformación Digital",
       issuer: "Cisco Networking Academy",
       sede: "SENATI - San Martín de Porres-Lima",
-      instructor: "Guillermo Alberto Góngora Chu",
       type: "CURSO OFICIAL",
       date: "05 Ago, 2024",
-      certId: "5dad8e7d-032c-44dc-8b3a-e4c48b24601c",
       description: "Panorama general del Internet de las Cosas (IoT) y su impacto en la transformación digital.",
       driveUrl: "https://drive.google.com/drive/folders/1Qojs_2gJ5N0l2HdOoDWkQ2Ss-SjxPyVx?hl=es"
     }
@@ -45,7 +79,7 @@ export default function Certificates() {
     <section id="certificates" style={{ padding: '6rem 5%', maxWidth: '1300px', margin: '0 auto' }}>
       <h2 className="section-title">CERTIFICACIONES</h2>
       <p className="section-subtitle" style={{ marginBottom: '3.5rem' }}>
-        Credenciales oficiales validadas por Cisco Networking Academy y SENATI
+        Credenciales oficiales y formación técnica especializada
       </p>
 
       <div style={{ 
@@ -105,7 +139,7 @@ export default function Certificates() {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#A3AAB7', fontSize: '0.8rem', marginBottom: '1rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '1rem' }}>
                 <Calendar size={14} color="#4DE6A8" />
-                <span>Finalizado: {cert.date}</span>
+                <span>{cert.date}</span>
               </div>
 
               <a 
