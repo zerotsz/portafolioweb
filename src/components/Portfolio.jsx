@@ -1,216 +1,187 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ExternalLink, Code } from 'lucide-react';
 
-export default function Portfolio() {
-  const [filter, setFilter] = useState('TODOS');
+// Importación exacta de tus imágenes locales desde src/assets/
+import imgSenati from '../assets/senati.png';
+import imgEcommerce from '../assets/ecommerce.png';
+import imgRestaurante from '../assets/restaurante.png';
+import imgFitCoach from '../assets/fitcoach.png';
+import imgOcr from '../assets/ocr.png';
+import imgEcolim from '../assets/ecolim.png';
 
-  // Fallback SVG para prevenir bloqueos de red o antivirus en imágenes externas
-  const getFallbackImage = (title) => {
-    const encodedTitle = encodeURIComponent(title);
-    return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400"><rect width="800" height="400" fill="%23111925"/><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23111925;stop-opacity:1" /><stop offset="100%" style="stop-color:%231a2638;stop-opacity:1" /></linearGradient></defs><rect width="800" height="400" fill="url(%23grad)"/><path d="M0 0L800 400M800 0L0 400" stroke="%234DE6A8" stroke-opacity="0.05" stroke-width="2"/><circle cx="400" cy="200" r="120" stroke="%234DE6A8" stroke-opacity="0.15" fill="none" stroke-width="2"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%234DE6A8" font-family="sans-serif" font-weight="bold" font-size="22">${encodedTitle}</text></svg>`;
-  };
+const misProyectos = [
+  {
+    titulo: 'Sistema de Asistencia y Matrícula - SENATI',
+    badge: 'SENATI / Desplegado',
+    descripcion: 'Aplicación web completa para la gestión de matrículas, directorio de alumnos y control dinámico de asistencia.',
+    imagen: imgSenati,
+    tags: ['React', 'JavaScript', 'HTML5', 'CSS3', 'Vercel'],
+    link: 'https://github.com/zerotsz'
+  },
+  {
+    titulo: 'E-Commerce de Ropa (BT)',
+    badge: 'Vercel Live',
+    descripcion: 'Tienda virtual interactiva para la comercialización de indumentaria y moda con catálogo dinámico, filtrado e interfaz moderna.',
+    imagen: imgEcommerce,
+    tags: ['React', 'Vite', 'JavaScript', 'CSS3 / UI Moderno'],
+    link: 'https://github.com/zerotsz'
+  },
+  {
+    titulo: 'Plataforma de Restaurante - Don Pedrito',
+    badge: 'Vercel Live',
+    descripcion: 'Plataforma digital para el sector gastronómico. Permite explorar menús digitales, cartas interactivas y reservas de clientes.',
+    imagen: imgRestaurante,
+    tags: ['JavaScript', 'HTML5', 'CSS3', 'Responsive Design'],
+    link: 'https://github.com/zerotsz'
+  },
+  {
+    titulo: 'FitCoach - Plataforma de Asesoría Fitness',
+    badge: 'Vercel Live',
+    descripcion: 'Aplicación web orientada al seguimiento deportivo y planes de entrenamiento personalizados para gimnasios y entrenadores.',
+    imagen: imgFitCoach,
+    tags: ['Angular', 'TypeScript', 'SCSS', 'Laravel API'],
+    link: 'https://github.com/zerotsz'
+  },
+  {
+    titulo: 'Reconocimiento de Placas Vehiculares (OCR)',
+    badge: 'IoT & Visión',
+    descripcion: 'Sistema inteligente de lectura y registro de matrículas con OpenCV y EasyOCR integrado a hojas de reporte corporativas.',
+    imagen: imgOcr,
+    tags: ['Python', 'OpenCV', 'EasyOCR', 'openpyxl'],
+    link: 'https://github.com/zerotsz'
+  },
+  {
+    titulo: 'ECOLIM - Gestión de Residuos e Inventarios',
+    badge: 'Mobile App',
+    descripcion: 'Aplicación nativa Android para control de inventarios y tratamiento de residuos con autenticación biométrica y exportación CSV.',
+    imagen: imgEcolim,
+    tags: ['Kotlin', 'Java', 'SQLite', 'Biometric API'],
+    link: 'https://github.com/zerotsz'
+  }
+];
 
-  const projects = [
-    {
-      id: 1,
-      title: "Sistema de Asistencia y Matrícula - SENATI",
-      category: "Full Stack",
-      badge: "SENATI / Desplegado",
-      description: "Aplicación web completa para la gestión de matrículas, directorio de alumnos y control dinámico de asistencia.",
-      tags: ["React", "JavaScript", "HTML5", "CSS3", "Vercel"],
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
-      demoUrl: "https://app-escuela-hazel.vercel.app/",
-      githubUrl: "https://github.com"
-    },
-    {
-      id: 2,
-      title: "E-Commerce de Ropa (BT)",
-      category: "Frontend",
-      badge: "Vercel Live",
-      description: "Tienda virtual interactiva para la comercialización de indumentaria y moda con catálogo dinámico, filtrado e interfaz moderna.",
-      tags: ["React", "Vite", "JavaScript", "CSS3 / UI Moderno"],
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80",
-      demoUrl: "https://ecommerceropa-bt.vercel.app/",
-      githubUrl: "https://github.com"
-    },
-    {
-      id: 3,
-      title: "Plataforma de Restaurante",
-      category: "Frontend",
-      badge: "Vercel Live",
-      description: "Plataforma digital para el sector gastronómico. Permite explorar menús digitales, cartas interactivas y reservas de clientes.",
-      tags: ["JavaScript", "HTML5", "CSS3", "Responsive Design"],
-      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
-      demoUrl: "https://restaurante-two-theta.vercel.app/",
-      githubUrl: "https://github.com"
-    },
-    {
-      id: 4,
-      title: "FitCoach - Plataforma de Asesoría Fitness",
-      category: "Full Stack",
-      badge: "Vercel Live",
-      description: "Plataforma web de asesoramiento deportivo y nutricional con seguimiento de rutinas, componentes modulares y UI responsiva.",
-      tags: ["Angular", "TypeScript", "SCSS", "Arquitectura Clean"],
-      image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80",
-      demoUrl: "https://fitcoachh-eight.vercel.app/",
-      githubUrl: "https://github.com"
-    },
-    {
-      id: 5,
-      title: "Reconocimiento de Placas Vehiculares (OCR)",
-      category: "Backend",
-      badge: "IoT & Visión",
-      description: "Sistema automatizado con visión artificial para detección y registro en tiempo real de placas vehiculares hacia Excel.",
-      tags: ["Python", "OpenCV", "Tesseract OCR", "Excel"],
-      image: "https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=800&q=80",
-      demoUrl: "#",
-      githubUrl: "https://github.com"
-    },
-    {
-      id: 6,
-      title: "ECOLIM - Gestión de Residuos e Inventarios",
-      category: "Full Stack",
-      badge: "Mobile App",
-      description: "Aplicación móvil Android desarrollada para el seguimiento de inventarios y control de residuos con biometría integrada.",
-      tags: ["Java", "Android Studio", "SQLite", "Biometrics"],
-      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
-      demoUrl: "#",
-      githubUrl: "https://github.com"
-    }
-  ];
-
-  const categories = ['TODOS', 'Full Stack', 'Frontend', 'Backend'];
-
-  const filteredProjects = filter === 'TODOS'
-    ? projects
-    : projects.filter(p => p.category === filter);
-
+export default function Projects() {
   return (
-    <section id="projects" style={{ padding: '6rem 5%', maxWidth: '1300px', margin: '0 auto' }}>
-      <h2 className="section-title">PROYECTOS DESTACADOS</h2>
-      <p className="section-subtitle" style={{ marginBottom: '3rem' }}>
-        Soluciones web, sistemas integrados y desarrollo de software
+    <section id="proyectos" style={{ padding: '6rem 5%', maxWidth: '1200px', margin: '0 auto' }}>
+      <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#FFFFFF', margin: 0 }}>PROYECTOS</h2>
+      <p style={{ color: '#4DE6A8', fontWeight: 700, fontSize: '0.85rem', letterSpacing: '0.08em', marginTop: '0.4rem', marginBottom: '3.5rem', textTransform: 'uppercase' }}>
+        MIS TRABAJOS Y DESARROLLOS DESTACADOS
       </p>
 
-      {/* Filtros */}
-      <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
-        {categories.map(cat => (
-          <button
-            key={cat}
-            onClick={() => setFilter(cat)}
-            className={filter === cat ? 'btn-primary' : 'btn-secondary'}
-            style={{ padding: '0.5rem 1.25rem', fontSize: '0.85rem' }}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+        gap: '2rem'
+      }}>
+        {misProyectos.map((p, idx) => (
+          <div key={idx} style={{
+            backgroundColor: '#0F1622',
+            borderRadius: '16px',
+            border: '1px solid rgba(255, 255, 255, 0.05)',
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            transition: 'transform 0.3s ease'
+          }}>
+            
+            {/* CONTENEDOR DE LA IMAGEN LOCAL */}
+            <div style={{ width: '100%', height: '180px', overflow: 'hidden', borderBottom: '1px solid rgba(255, 255, 255, 0.05)', backgroundColor: '#080C14' }}>
+              <img 
+                src={p.imagen} 
+                alt={p.titulo} 
+                style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9, transition: 'transform 0.3s ease' }}
+                onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
+                onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
+              />
+            </div>
 
-      {/* Grid de Proyectos */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-        {filteredProjects.map((project) => (
-          <div 
-            key={project.id} 
-            className="card-glass" 
-            style={{ 
-              background: '#111925', 
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              borderRadius: '12px',
-              overflow: 'hidden',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              transition: 'transform 0.3s ease, border-color 0.3s ease',
-            }}
-          >
-            <div>
-              {/* Contenedor de la Imagen con Control de Errores por Antivirus / Red */}
-              <div style={{ position: 'relative', height: '180px', overflow: 'hidden', backgroundColor: '#0B1019' }}>
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  onError={(e) => {
-                    e.target.onerror = null; 
-                    e.target.src = getFallbackImage(project.title);
-                  }}
-                />
-                <span style={{ 
-                  position: 'absolute',
-                  top: '1rem',
-                  right: '1rem',
-                  backgroundColor: 'rgba(11, 25, 37, 0.85)', 
-                  color: '#4DE6A8', 
-                  border: '1px solid #4DE6A8',
-                  padding: '0.25rem 0.75rem', 
-                  borderRadius: '20px', 
-                  fontSize: '0.75rem', 
-                  fontWeight: 600,
-                  backdropFilter: 'blur(4px)'
+            {/* CONTENIDO DE LA TARJETA */}
+            <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
+              <div>
+                <span style={{
+                  display: 'inline-block',
+                  backgroundColor: 'rgba(77, 230, 168, 0.1)',
+                  color: '#4DE6A8',
+                  border: '1px solid rgba(77, 230, 168, 0.2)',
+                  padding: '0.25rem 0.75rem',
+                  borderRadius: '20px',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                  marginBottom: '1.2rem'
                 }}>
-                  {project.badge}
+                  {p.badge}
                 </span>
-              </div>
 
-              {/* Contenido de la Tarjeta */}
-              <div style={{ padding: '1.5rem 1.5rem 0' }}>
-                <h3 style={{ fontSize: '1.25rem', color: '#F8FAFC', marginBottom: '0.75rem', fontWeight: 600, lineHeight: '1.4' }}>
-                  {project.title}
+                <h3 style={{ color: '#FFFFFF', fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.75rem', lineHeight: 1.3 }}>
+                  {p.titulo}
                 </h3>
 
-                <p style={{ color: '#A3AAB7', fontSize: '0.9rem', lineHeight: '1.6', marginBottom: '1.25rem' }}>
-                  {project.description}
+                <p style={{ color: '#94A3B8', fontSize: '0.88rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
+                  {p.descripcion}
                 </p>
 
-                {/* Tags de Tecnologías */}
-                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
-                  {project.tags.map((tag, idx) => (
-                    <span 
-                      key={idx} 
-                      style={{ 
-                        fontSize: '0.75rem', 
-                        background: 'rgba(255, 255, 255, 0.05)', 
-                        color: '#F8FAFC', 
-                        padding: '0.25rem 0.6rem', 
-                        borderRadius: '4px',
-                        border: '1px solid rgba(255, 255, 255, 0.08)'
-                      }}
-                    >
-                      {tag}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '2rem' }}>
+                  {p.tags.map((t, i) => (
+                    <span key={i} style={{
+                      backgroundColor: '#0A0F17',
+                      border: '1px solid rgba(255, 255, 255, 0.08)',
+                      color: '#CBD5E1',
+                      fontSize: '0.75rem',
+                      padding: '0.3rem 0.6rem',
+                      borderRadius: '6px',
+                      fontWeight: 600
+                    }}>
+                      {t}
                     </span>
                   ))}
                 </div>
               </div>
+
+              {/* BOTONES DE ACCIÓN */}
+              <div style={{ display: 'flex', gap: '0.75rem' }}>
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    flex: 1,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    backgroundColor: '#4DE6A8',
+                    color: '#0A0F17',
+                    padding: '0.65rem',
+                    borderRadius: '8px',
+                    fontWeight: 700,
+                    fontSize: '0.85rem',
+                    textDecoration: 'none'
+                  }}
+                >
+                  <ExternalLink size={16} /> Ver Proyecto
+                </a>
+                <a
+                  href="https://github.com/zerotsz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: '#0A0F17',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    color: '#FFFFFF',
+                    padding: '0.65rem 0.8rem',
+                    borderRadius: '8px',
+                    textDecoration: 'none'
+                  }}
+                >
+                  <Code size={16} />
+                </a>
+              </div>
             </div>
 
-            {/* Botones de Acción */}
-            <div style={{ padding: '0 1.5rem 1.5rem', display: 'flex', gap: '1rem' }}>
-              <a 
-                href={project.demoUrl} 
-                target={project.demoUrl !== '#' ? "_blank" : "_self"} 
-                rel="noreferrer" 
-                className="btn-primary" 
-                style={{ flex: 1, justifyContent: 'center', fontSize: '0.85rem', padding: '0.6rem' }}
-                onClick={(e) => {
-                  if (project.demoUrl === '#') {
-                    e.preventDefault();
-                    alert(`Demostración de "${project.title}" disponible en entorno local / repositorio.`);
-                  }
-                }}
-              >
-                <ExternalLink size={16} /> Ver Proyecto
-              </a>
-              <a 
-                href={project.githubUrl} 
-                target="_blank" 
-                rel="noreferrer" 
-                className="btn-secondary" 
-                style={{ padding: '0.6rem', justifyContent: 'center' }}
-                title="Ver Código"
-              >
-                <Code size={16} />
-              </a>
-            </div>
           </div>
         ))}
       </div>
