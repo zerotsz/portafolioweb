@@ -4,12 +4,18 @@ import { ExternalLink, Code } from 'lucide-react';
 export default function Portfolio() {
   const [filter, setFilter] = useState('TODOS');
 
+  // Fallback SVG para prevenir bloqueos de red o antivirus en imágenes externas
+  const getFallbackImage = (title) => {
+    const encodedTitle = encodeURIComponent(title);
+    return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400"><rect width="800" height="400" fill="%23111925"/><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23111925;stop-opacity:1" /><stop offset="100%" style="stop-color:%231a2638;stop-opacity:1" /></linearGradient></defs><rect width="800" height="400" fill="url(%23grad)"/><path d="M0 0L800 400M800 0L0 400" stroke="%234DE6A8" stroke-opacity="0.05" stroke-width="2"/><circle cx="400" cy="200" r="120" stroke="%234DE6A8" stroke-opacity="0.15" fill="none" stroke-width="2"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%234DE6A8" font-family="sans-serif" font-weight="bold" font-size="22">${encodedTitle}</text></svg>`;
+  };
+
   const projects = [
     {
       id: 1,
       title: "Sistema de Asistencia y Matrícula - SENATI",
       category: "Full Stack",
-      badge: "Desplegado",
+      badge: "SENATI / Desplegado",
       description: "Aplicación web completa para la gestión de matrículas, directorio de alumnos y control dinámico de asistencia.",
       tags: ["React", "JavaScript", "HTML5", "CSS3", "Vercel"],
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80",
@@ -18,17 +24,39 @@ export default function Portfolio() {
     },
     {
       id: 2,
-      title: "Plataforma de Asesoría Fitness - FitCoach",
+      title: "E-Commerce de Ropa (BT)",
       category: "Frontend",
-      badge: "Codaini",
-      description: "Diseño y desarrollo frontend modular e interactivo para la plataforma web de asesoramiento deportivo y nutricional.",
-      tags: ["Angular", "TypeScript", "SCSS", "Figma"],
-      image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80",
-      demoUrl: "#",
+      badge: "Vercel Live",
+      description: "Tienda virtual interactiva para la comercialización de indumentaria y moda con catálogo dinámico, filtrado e interfaz moderna.",
+      tags: ["React", "Vite", "JavaScript", "CSS3 / UI Moderno"],
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80",
+      demoUrl: "https://ecommerceropa-bt.vercel.app/",
       githubUrl: "https://github.com"
     },
     {
       id: 3,
+      title: "Plataforma de Restaurante",
+      category: "Frontend",
+      badge: "Vercel Live",
+      description: "Plataforma digital para el sector gastronómico. Permite explorar menús digitales, cartas interactivas y reservas de clientes.",
+      tags: ["JavaScript", "HTML5", "CSS3", "Responsive Design"],
+      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
+      demoUrl: "https://restaurante-two-theta.vercel.app/",
+      githubUrl: "https://github.com"
+    },
+    {
+      id: 4,
+      title: "FitCoach - Plataforma de Asesoría Fitness",
+      category: "Full Stack",
+      badge: "Vercel Live",
+      description: "Plataforma web de asesoramiento deportivo y nutricional con seguimiento de rutinas, componentes modulares y UI responsiva.",
+      tags: ["Angular", "TypeScript", "SCSS", "Arquitectura Clean"],
+      image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80",
+      demoUrl: "https://fitcoachh-eight.vercel.app/",
+      githubUrl: "https://github.com"
+    },
+    {
+      id: 5,
       title: "Reconocimiento de Placas Vehiculares (OCR)",
       category: "Backend",
       badge: "IoT & Visión",
@@ -39,35 +67,13 @@ export default function Portfolio() {
       githubUrl: "https://github.com"
     },
     {
-      id: 4,
+      id: 6,
       title: "ECOLIM - Gestión de Residuos e Inventarios",
       category: "Full Stack",
       badge: "Mobile App",
       description: "Aplicación móvil Android desarrollada para el seguimiento de inventarios y control de residuos con biometría integrada.",
       tags: ["Java", "Android Studio", "SQLite", "Biometrics"],
       image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
-      demoUrl: "#",
-      githubUrl: "https://github.com"
-    },
-    {
-      id: 5,
-      title: "ParkSense - Sistema Inteligente de Estacionamiento",
-      category: "Backend",
-      badge: "IoT",
-      description: "Sistema embebido con sensores ultrasónicos, barreras servomotorizadas y pantalla LCD en tiempo real.",
-      tags: ["Arduino", "C++", "Sensores HC-SR04", "Servos"],
-      image: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=800&q=80",
-      demoUrl: "#",
-      githubUrl: "https://github.com"
-    },
-    {
-      id: 6,
-      title: "Simulación 3D de Estructura Cerebral",
-      category: "Frontend",
-      badge: "Gráficos 3D",
-      description: "Simulación procedural de partículas en 3D que renderiza una estructura cerebral en forma de galaxia mediante GPU shaders.",
-      tags: ["Three.js", "GLSL Shaders", "JavaScript"],
-      image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=800&q=80",
       demoUrl: "#",
       githubUrl: "https://github.com"
     }
@@ -100,7 +106,7 @@ export default function Portfolio() {
         ))}
       </div>
 
-      {/* Grid de Proyectos con Imágenes */}
+      {/* Grid de Proyectos */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
         {filteredProjects.map((project) => (
           <div 
@@ -113,16 +119,21 @@ export default function Portfolio() {
               overflow: 'hidden',
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
+              transition: 'transform 0.3s ease, border-color 0.3s ease',
             }}
           >
             <div>
-              {/* Contenedor de la Imagen */}
-              <div style={{ position: 'relative', height: '180px', overflow: 'hidden' }}>
+              {/* Contenedor de la Imagen con Control de Errores por Antivirus / Red */}
+              <div style={{ position: 'relative', height: '180px', overflow: 'hidden', backgroundColor: '#0B1019' }}>
                 <img 
                   src={project.image} 
                   alt={project.title} 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  onError={(e) => {
+                    e.target.onerror = null; 
+                    e.target.src = getFallbackImage(project.title);
+                  }}
                 />
                 <span style={{ 
                   position: 'absolute',
@@ -183,7 +194,7 @@ export default function Portfolio() {
                 onClick={(e) => {
                   if (project.demoUrl === '#') {
                     e.preventDefault();
-                    alert(`Demostración de "${project.title}" disponible en repositorio local / portafolio.`);
+                    alert(`Demostración de "${project.title}" disponible en entorno local / repositorio.`);
                   }
                 }}
               >
