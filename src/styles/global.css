@@ -1,6 +1,6 @@
 :root {
   --bg-main: #0B1019;
-  --bg-card: #111925;
+  --bg-card: rgba(17, 25, 37, 0.85); /* Semitransparente para efecto glassmorphism */
   --neon-green: #4DE6A8;
   --white: #F8FAFC;
   --gray-secondary: #A3AAB7;
@@ -8,6 +8,7 @@
   --font-main: 'Space Grotesk', 'Inter', sans-serif;
 }
 
+/* Reset universal corregido (*) */
 * {
   margin: 0;
   padding: 0;
@@ -21,8 +22,9 @@ html {
   font-family: var(--font-main);
 }
 
+/* Permitir que el fondo 3D (GalaxyBackground) sea visible */
 body {
-  background-color: var(--bg-main);
+  background-color: transparent;
   overflow-x: hidden;
 }
 
@@ -74,6 +76,7 @@ body {
 
 .card-glass {
   background-color: var(--bg-card);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: 2rem;
@@ -87,9 +90,15 @@ body {
 }
 
 section {
-  padding: 6rem 5%;
+  padding: 4rem 5%; /* Ajustado de 6rem a 4rem para compactar los espacios */
   max-width: 1400px;
   margin: 0 auto;
+}
+
+/* La última sección (Contacto) no tendrá margen ni padding inferior excesivo */
+section:last-of-type {
+  padding-bottom: 2rem !important;
+  margin-bottom: 0 !important;
 }
 
 .section-title {

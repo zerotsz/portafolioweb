@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import GalaxyBackground from './components/GalaxyBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -11,7 +12,6 @@ import Certificates from './components/Certificates';
 import Testimonials from './components/Testimonials';
 import CtaSection from './components/CtaSection';
 import Contact from './components/Contact';
-import Footer from './components/Footer';
 import { X } from 'lucide-react';
 
 import './styles/global.css';
@@ -20,10 +20,15 @@ export default function App() {
   const [showreelOpen, setShowreelOpen] = useState(false);
 
   return (
-    <>
+    <div style={{ position: 'relative', minHeight: '100vh', overflowX: 'hidden' }}>
+    
       <Navbar />
-      <main>
+
+      {/* Contenido de la Aplicación */}
+      <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero onOpenShowreel={() => setShowreelOpen(true)} />
+        <GalaxyBackground />
+
         <About />
         <Skills />
         <Services />
@@ -32,20 +37,25 @@ export default function App() {
         <Experience />
         <Certificates />
         <Testimonials />
-        
-        {/* Tarjeta única directamente antes del Formulario de Contacto */}
         <CtaSection />
-        
         <Contact />
       </main>
-
 
       {/* Modal de Demostración */}
       {showreelOpen && (
         <div style={{
-          position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
-          backgroundColor: 'rgba(11, 16, 25, 0.95)', backdropFilter: 'blur(8px)',
-          display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 3000, padding: '2rem'
+          position: 'fixed', 
+          top: 0, 
+          left: 0, 
+          width: '100%', 
+          height: '100%',
+          backgroundColor: 'rgba(11, 16, 25, 0.95)', 
+          backdropFilter: 'blur(8px)',
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          zIndex: 3000, 
+          padding: '2rem'
         }}>
           <div className="card-glass" style={{ maxWidth: '800px', width: '100%', position: 'relative', background: '#111925', border: '1px solid #4DE6A8', textAlign: 'center', padding: '3rem' }}>
             <button onClick={() => setShowreelOpen(false)} style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', background: 'none', border: 'none', color: '#F8FAFC', cursor: 'pointer' }}>
@@ -57,6 +67,7 @@ export default function App() {
           </div>
         </div>
       )}
-    </>
+
+    </div>
   );
 }
