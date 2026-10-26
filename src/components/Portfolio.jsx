@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { ExternalLink, Code } from 'lucide-react';
 
-// Importación de tus imágenes locales desde src/assets/
+// Importación de tus imágenes locales actualizadas desde src/assets/
 import imgSenati from '../assets/senati.png';
 import imgEcommerce from '../assets/ecommerce.png';
 import imgRestaurante from '../assets/restaurante.png';
 import imgFitCoach from '../assets/fitcoach.png';
 import imgOcr from '../assets/ocr.png';
 import imgEcolim from '../assets/ecolim.png';
+import imgParksense from '../assets/parksense.png';
 
 export default function Portfolio() {
   const [filter, setFilter] = useState('TODOS');
 
-  // Fallback SVG por seguridad
+  // Fallback SVG por seguridad si falla alguna imagen
   const getFallbackImage = (title) => {
     const encodedTitle = encodeURIComponent(title);
     return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400"><rect width="800" height="400" fill="%23111925"/><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23111925;stop-opacity:1" /><stop offset="100%" style="stop-color:%231a2638;stop-opacity:1" /></linearGradient></defs><rect width="800" height="400" fill="url(%23grad)"/><path d="M0 0L800 400M800 0L0 400" stroke="%234DE6A8" stroke-opacity="0.05" stroke-width="2"/><circle cx="400" cy="200" r="120" stroke="%234DE6A8" stroke-opacity="0.15" fill="none" stroke-width="2"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%234DE6A8" font-family="sans-serif" font-weight="bold" font-size="22">${encodedTitle}</text></svg>`;
@@ -21,21 +22,21 @@ export default function Portfolio() {
   const projects = [
     {
       id: 1,
-      title: "Sistema de Asistencia y Matrícula - SENATI",
+      title: "Sistema de Mantenimiento de Alumnos - SENATI",
       category: "Full Stack",
       badge: "SENATI / Desplegado",
-      description: "Aplicación web completa para la gestión de matrículas, directorio de alumnos y control dinámico de asistencia.",
+      description: "Aplicación web para la gestión de matrículas, directorio de alumnos y control dinámico de asistencia.",
       tags: ["React", "JavaScript", "HTML5", "CSS3", "Vercel"],
       image: imgSenati,
       demoUrl: "https://app-escuela-hazel.vercel.app/",
-      githubUrl: "https://github.com/zerotsz"
+      githubUrl: "https://github.com/Dgirto/appMantenimientoAlumnos.git"
     },
     {
       id: 2,
       title: "E-Commerce de Ropa (BT)",
       category: "Frontend",
       badge: "Vercel Live",
-      description: "Tienda virtual interactiva para la comercialización de indumentaria y moda con catálogo dinámico, filtrado e interfaz moderna.",
+      description: "Tienda virtual interactiva para la comercialización de indumentaria y moda con catálogo dinámico y filtrado.",
       tags: ["React", "Vite", "JavaScript", "CSS3 / UI Moderno"],
       image: imgEcommerce,
       demoUrl: "https://ecommerceropa-bt.vercel.app/",
@@ -46,7 +47,7 @@ export default function Portfolio() {
       title: "Plataforma de Restaurante - Don Pedrito",
       category: "Frontend",
       badge: "Vercel Live",
-      description: "Plataforma digital para el sector gastronómico. Permite explorar menús digitales, cartas interactivas y reservas de clientes.",
+      description: "Plataforma digital gastronómica con menú interactivo, carta de productos y reservas de clientes.",
       tags: ["JavaScript", "HTML5", "CSS3", "Responsive Design"],
       image: imgRestaurante,
       demoUrl: "https://restaurante-two-theta.vercel.app/",
@@ -57,7 +58,7 @@ export default function Portfolio() {
       title: "FitCoach - Plataforma de Asesoría Fitness",
       category: "Full Stack",
       badge: "Vercel Live",
-      description: "Plataforma web de asesoramiento deportivo y nutricional con seguimiento de rutinas, componentes modulares y UI responsiva.",
+      description: "Plataforma web de asesoramiento deportivo y nutricional con seguimiento de rutinas y componentes modulares.",
       tags: ["Angular", "TypeScript", "SCSS", "Arquitectura Clean"],
       image: imgFitCoach,
       demoUrl: "https://fitcoachh-eight.vercel.app/",
@@ -65,23 +66,34 @@ export default function Portfolio() {
     },
     {
       id: 5,
-      title: "Reconocimiento de Placas Vehiculares (OCR)",
-      category: "Backend",
-      badge: "IoT & Visión",
-      description: "Sistema automatizado con visión artificial para detección y registro en tiempo real de placas vehiculares hacia Excel.",
-      tags: ["Python", "OpenCV", "Tesseract OCR", "Excel"],
-      image: imgOcr,
-      demoUrl: "#",
-      githubUrl: "https://github.com/zerotsz"
-    },
-    {
-      id: 6,
       title: "ECOLIM - Gestión de Residuos e Inventarios",
       category: "Full Stack",
       badge: "Mobile App",
-      description: "Aplicación móvil Android desarrollada para el seguimiento de inventarios y control de residuos con biometría integrada.",
+      description: "Aplicación móvil Android para el seguimiento de inventarios y control de residuos con autenticación biométrica.",
       tags: ["Java", "Android Studio", "SQLite", "Biometrics"],
       image: imgEcolim,
+      demoUrl: "#",
+      githubUrl: "https://github.com/DanielaMendoza4/appEcolim.git"
+    },
+    {
+      id: 6,
+      title: "PARKSENSE - Sistema de Parqueo Inteligente",
+      category: "Backend",
+      badge: "IoT & Simulación",
+      description: "Controlador de estacionamiento simulado en Tinkercad con sensores ultrasónicos de distancia, servobarreras y pantalla LCD.",
+      tags: ["C++", "Arduino", "Tinkercad", "Sensores IoT"],
+      image: imgParksense,
+      demoUrl: "https://www.tinkercad.com/things/dKMEk9EIb7G-parksense-sistema-de-parqueo-inteligente/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=wDwtgyiQI_50IxjAuVlBwgyC6WhaFxStDEK66Z0GchU",
+      githubUrl: "https://github.com/zerotsz"
+    },
+    {
+      id: 7,
+      title: "Reconocimiento de Placas Vehiculares (OCR)",
+      category: "Backend",
+      badge: "IoT & Visión",
+      description: "Sistema automatizado con visión artificial para detección y registro en tiempo real de matrículas vehiculares hacia Excel.",
+      tags: ["Python", "OpenCV", "Tesseract OCR", "Excel"],
+      image: imgOcr,
       demoUrl: "#",
       githubUrl: "https://github.com/zerotsz"
     }
@@ -97,7 +109,7 @@ export default function Portfolio() {
     <section id="projects" style={{ padding: '6rem 5%', maxWidth: '1300px', margin: '0 auto' }}>
       <h2 className="section-title">PROYECTOS DESTACADOS</h2>
       <p className="section-subtitle" style={{ marginBottom: '3rem' }}>
-        Soluciones web, sistemas integrados y desarrollo de software
+        Soluciones web, sistemas integrados e IoT
       </p>
 
       {/* Filtros */}
@@ -132,7 +144,7 @@ export default function Portfolio() {
             }}
           >
             <div>
-              {/* Contenedor de la Imagen perfectamente ajustado */}
+              {/* Contenedor de Imagen */}
               <div style={{ position: 'relative', height: '180px', overflow: 'hidden', backgroundColor: '#0B1019' }}>
                 <img 
                   src={project.image} 
@@ -178,7 +190,7 @@ export default function Portfolio() {
                   {project.description}
                 </p>
 
-                {/* Tags de Tecnologías */}
+                {/* Tags */}
                 <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
                   {project.tags.map((tag, idx) => (
                     <span 
